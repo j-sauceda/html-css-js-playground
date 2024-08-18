@@ -71,6 +71,7 @@ const App = () => {
           <iframe
             className="output"
             srcDoc={source}
+            title="source output"
             width={"100%"}
             height={"100%"}
           />
