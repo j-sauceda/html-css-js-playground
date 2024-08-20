@@ -15,15 +15,24 @@ const App = () => {
   const [source, setSource] = useState("");
 
   // CSS frameworks' state
-  const [isBootstrapLoaded, setIsBootstrapLoaded] = useState(true);
-  const [isBulmaLoaded, setIsBulmaLoaded] = useState(false);
-  const [isMaterializeLoaded, setIsMaterializeLoaded] = useState(false);
-  const [isTailwindLoaded, setIsTailwindLoaded] = useState(false);
+  const [isBootstrapLoaded, setIsBootstrapLoaded] = useLocalStorage(
+    "bootstrap",
+    false
+  );
+  const [isBulmaLoaded, setIsBulmaLoaded] = useLocalStorage("bulma", false);
+  const [isMaterializeLoaded, setIsMaterializeLoaded] = useLocalStorage(
+    "materialize",
+    false
+  );
+  const [isTailwindLoaded, setIsTailwindLoaded] = useLocalStorage(
+    "tailwind",
+    false
+  );
 
   // HTML & JS libraries' state
-  const [isAlpineLoaded, setIsAlpineLoaded] = useState(false);
-  const [isHtmxLoaded, setIsHtmxLoaded] = useState(true);
-  const [isJQueryLoaded, setIsJQueryLoaded] = useState(false);
+  const [isAlpineLoaded, setIsAlpineLoaded] = useLocalStorage("alpine", false);
+  const [isHtmxLoaded, setIsHtmxLoaded] = useLocalStorage("htmx", false);
+  const [isJQueryLoaded, setIsJQueryLoaded] = useLocalStorage("jquery", false);
 
   // libraries variables
   const alpineJS = '<script defer src="/js/alpine-3.14.1.min.js"></script>';
