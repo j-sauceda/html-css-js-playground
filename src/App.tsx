@@ -82,64 +82,22 @@ const App = () => {
   };
 
   const handleCssSelect = (option: string) => {
-    switch (option) {
-      case "-":
-        setIsBootstrapLoaded(false);
-        setIsBulmaLoaded(false);
-        setIsMaterializeLoaded(false);
-        setIsTailwindLoaded(false);
-        break;
-      case "bootstrap":
-        setIsBootstrapLoaded(true);
-        setIsBulmaLoaded(false);
-        setIsMaterializeLoaded(false);
-        setIsTailwindLoaded(false);
-        break;
-      case "bulma":
-        setIsBootstrapLoaded(false);
-        setIsBulmaLoaded(true);
-        setIsMaterializeLoaded(false);
-        setIsTailwindLoaded(false);
-        break;
-      case "materialize":
-        setIsBootstrapLoaded(false);
-        setIsBulmaLoaded(false);
-        setIsMaterializeLoaded(true);
-        setIsTailwindLoaded(false);
-        break;
-      case "tailwind":
-        setIsBootstrapLoaded(false);
-        setIsBulmaLoaded(false);
-        setIsMaterializeLoaded(false);
-        setIsTailwindLoaded(true);
-        break;
-    }
+    option === "bootstrap"
+      ? setIsBootstrapLoaded(true)
+      : setIsBootstrapLoaded(false);
+    option === "bulma" ? setIsBulmaLoaded(true) : setIsBulmaLoaded(false);
+    option === "materialize"
+      ? setIsMaterializeLoaded(true)
+      : setIsMaterializeLoaded(false);
+    option === "tailwind"
+      ? setIsTailwindLoaded(true)
+      : setIsTailwindLoaded(false);
   };
 
   const handleJsSelect = (option: string) => {
-    console.log(`js: ${option}`);
-    switch (option) {
-      case "-":
-        setIsAlpineLoaded(false);
-        setIsHtmxLoaded(false);
-        setIsJQueryLoaded(false);
-        break;
-      case "alpine":
-        setIsAlpineLoaded(true);
-        setIsHtmxLoaded(false);
-        setIsJQueryLoaded(false);
-        break;
-      case "htmx":
-        setIsAlpineLoaded(false);
-        setIsHtmxLoaded(true);
-        setIsJQueryLoaded(false);
-        break;
-      case "jquery":
-        setIsAlpineLoaded(false);
-        setIsHtmxLoaded(false);
-        setIsJQueryLoaded(true);
-        break;
-    }
+    option === "alpine" ? setIsAlpineLoaded(true) : setIsAlpineLoaded(false);
+    option === "htmx" ? setIsHtmxLoaded(true) : setIsHtmxLoaded(false);
+    option === "jquery" ? setIsJQueryLoaded(true) : setIsJQueryLoaded(false);
   };
 
   return (
