@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ChangeEvent } from "react";
 import CodeMirror from "@uiw/react-codemirror";
 
 // utils
@@ -21,33 +21,72 @@ interface EditorProps {
   lang: languages;
   code: string;
   onChange: (code: string) => void;
+  onSelectCSS?: (option: string) => void;
+  onSelectJS?: (option: string) => void;
 }
 
-const Editor: FC<EditorProps> = ({ height, width, lang, code, onChange }) => {
+const Editor: FC<EditorProps> = ({
+  height,
+  width,
+  lang,
+  code,
+  onChange,
+  onSelectCSS,
+  onSelectJS,
+}) => {
   let langExtension;
   let title = "";
 
   switch (lang) {
     case languages.CSS:
-      title = "CSS";
+      title = "CSS3";
       langExtension = lang_css();
       break;
     case languages.HTML:
-      title = "HTML";
+      title = "HTML5";
       langExtension = lang_html({
         matchClosingTags: true,
         autoCloseTags: true,
       });
       break;
     case languages.JS:
-      title = "Javascript";
+      title = "Javascript (check the browser console)";
       langExtension = lang_js({ typescript: true });
       break;
   }
 
+  const handleCssSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    const option = e.target.value || "-";
+    if (!!onSelectCSS) onSelectCSS(option);
+  };
+
+  const handleJsSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+    const option = e.target.value || "-";
+    if (!!onSelectJS) onSelectJS(option);
+  };
+
   return (
     <div className="editor">
-      <span>{title}</span>
+      <span className="subtitle">
+        {title}
+        {lang === languages.CSS && (
+          <select name="css-options" onChange={handleCssSelect}>
+            <option value="-">CSS framework</option>
+            <option value="bootstrap">Bootstrap CSS 5.3</option>
+            <option value="bulma">Bulma CSS 1.0</option>
+            <option value="materialize">Materialize 2.1</option>
+            <option value="tailwind">Tailwind CSS (CDN)</option>
+          </select>
+        )}
+        {lang === languages.JS && (
+          <select name="js-options" onChange={handleJsSelect}>
+            <option value="-">JS framework</option>
+            <option value="alpine">Alpine JS 3.14</option>
+            <option value="htmx">HTMX 2.0</option>
+            <option value="jquery">jQuery 3.7</option>
+          </select>
+        )}
+      </span>
       <CodeMirror
         theme={materialLight}
         height={height}
