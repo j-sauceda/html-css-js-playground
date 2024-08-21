@@ -154,6 +154,11 @@ const App = () => {
           />
         </div>
       </div>
+      <div className="footer">
+        <span>
+          Built by <a href="https://www.jsauceda.info">Jorge Sauceda, 2024</a>
+        </span>
+      </div>
     </div>
   );
 };

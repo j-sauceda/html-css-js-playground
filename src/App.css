@@ -84,3 +84,16 @@ select {
     width: 1170px;
   }
 }
+
+.footer {
+  background-color: #989898;
+  border-radius: 10px;
+  color: white;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 2rem;
+}
