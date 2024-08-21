@@ -1,5 +1,6 @@
 import { FC, ChangeEvent } from "react";
 import CodeMirror from "@uiw/react-codemirror";
+import { useLocalStorage } from "@uidotdev/usehooks";
 
 // utils
 import { languages } from "../utils/enums";
@@ -34,6 +35,8 @@ const Editor: FC<EditorProps> = ({
   onSelectCSS,
   onSelectJS,
 }) => {
+  const [cssLib, setCssLib] = useLocalStorage("css-lib", "-");
+  const [jsLib, setJsLib] = useLocalStorage("js-lib", "-");
   let langExtension;
   let title = "";
 
@@ -58,11 +61,13 @@ const Editor: FC<EditorProps> = ({
   const handleCssSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const option = e.target.value || "-";
     if (!!onSelectCSS) onSelectCSS(option);
+    setCssLib(option);
   };
 
   const handleJsSelect = (e: ChangeEvent<HTMLSelectElement>) => {
     const option = e.target.value || "-";
     if (!!onSelectJS) onSelectJS(option);
+    setJsLib(option);
   };
 
   return (
@@ -70,7 +75,7 @@ const Editor: FC<EditorProps> = ({
       <span className="subtitle">
         {title}
         {lang === languages.CSS && (
-          <select name="css-options" onChange={handleCssSelect}>
+          <select name="css-options" onChange={handleCssSelect} value={cssLib}>
             <option value="-">CSS framework</option>
             <option value="bootstrap">Bootstrap CSS 5.3</option>
             <option value="bulma">Bulma CSS 1.0</option>
@@ -79,7 +84,7 @@ const Editor: FC<EditorProps> = ({
           </select>
         )}
         {lang === languages.JS && (
-          <select name="js-options" onChange={handleJsSelect}>
+          <select name="js-options" onChange={handleJsSelect} value={jsLib}>
             <option value="-">JS framework</option>
             <option value="alpine">Alpine JS 3.14</option>
             <option value="htmx">HTMX 2.0</option>
