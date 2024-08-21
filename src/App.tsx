@@ -138,7 +138,8 @@ const App = () => {
         />
         <div
           style={{
-            marginBottom: "17px",
+            marginBottom: "18px",
+            marginTop: "9px",
             minHeight: "200px",
             maxHeight: "40vh",
           }}
