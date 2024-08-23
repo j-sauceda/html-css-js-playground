@@ -30,6 +30,23 @@ export default defineConfig({
         ],
       },
       registerType: "autoUpdate",
+      workbox: {
+        runtimeCaching: [
+          {
+            handler: "NetworkFirst",
+            urlPattern: new RegExp(
+              "^https://html-css-js-simple-playground.netlify.app/(?!.*-).*\\.[^-]+$"
+            ),
+            options: {
+              cacheName: "main-cache",
+              expiration: {
+                maxEntries: 10,
+                maxAgeSeconds: 60 * 60 * 24,
+              },
+            },
+          },
+        ],
+      },
     }),
   ],
   server: {
