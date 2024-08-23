@@ -33,7 +33,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            handler: "NetworkFirst",
+            handler: "StaleWhileRevalidate",
             urlPattern: new RegExp(
               "^https://html-css-js-simple-playground.netlify.app/(?!.*-).*\\.[^-]+$"
             ),
